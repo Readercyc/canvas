@@ -44,9 +44,14 @@ function draw() {
 ```
 ![image_1c9nvqhcp3qbj64163cofk1u669.png-4.4kB][1]
 
+这里先运用了drawImage画出了统计背景图  
+在运用绘制路径的方式画出了折线图，减少了很多绘制表格的代码
+
+### drawImage 2.0
 `drawImage(image, x, y, width, height)`
 这个方法多了2个参数：width 和 height，这两个参数用来控制 当向canvas画入时应该缩放的大小
 
+### drawImage 3.0
 `drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)`
 第一个参数和其它的是相同的，都是一个图像或者另一个 canvas 的引用。其它8个参数最好是参照右边的图解，前4个是定义图像源的切片位置和大小，后4个则是定义切片的目标显示位置和大小。
 
