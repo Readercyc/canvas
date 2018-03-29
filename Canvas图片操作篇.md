@@ -138,6 +138,9 @@ scale 方法接受两个参数。x,y
 分别是横轴和纵轴的缩放因子，它们都必须是正值。值比 1.0 小表示缩小，比 1.0 大则表示放大，值为 1.0 时什么效果都没有。
 
 默认情况下，canvas 的 1 单位就是 1 个像素。举例说，如果我们设置缩放因子是 0.5，1 个单位就变成对应 0.5 个像素，这样绘制出来的形状就会是原先的一半。同理，设置为 2.0 时，1 个单位就对应变成了 2 像素，绘制的结果就是图形放大了 2 倍。
-  [1]: http://static.zybuluo.com/reader-cyc/2n191sxfe6qn02x9glnwlu6o/image_1c9nvqhcp3qbj64163cofk1u669.png
-  [2]: http://static.zybuluo.com/reader-cyc/c5yc2wm5530mdc0rugsbsrfk/image_1c9obl811igqm5874j14cdpn016.png
-  [3]: http://static.zybuluo.com/reader-cyc/0919qbiuellvxdy1z6ihb190/image_1c9obq9579h815cll7j6sh15dc1j.png
+
+[1]: http://static.zybuluo.com/reader-cyc/2n191sxfe6qn02x9glnwlu6o/image_1c9nvqhcp3qbj64163cofk1u669.png
+
+[2]: http://static.zybuluo.com/reader-cyc/c5yc2wm5530mdc0rugsbsrfk/image_1c9obl811igqm5874j14cdpn016.png
+
+[3]: http://static.zybuluo.com/reader-cyc/0919qbiuellvxdy1z6ihb190/image_1c9obq9579h815cll7j6sh15dc1j.png
