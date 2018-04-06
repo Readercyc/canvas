@@ -23,13 +23,37 @@
 
 `setInterval(function, delay)`
 当设定好间隔时间后，function会定期执行。
-
+用`clearInterval()清除`
+```js
+function Draw()
+{
+    //code....
+}
+var time = setInterval(Draw,1000/60);
+// event
+clearInterval(time)
+```
 `setTimeout(function, delay)`
 在设定好的时间之后执行函数
 
+
 `requestAnimationFrame(callback)`
 以浏览器自定义的刷新频率进行刷新，一般为每秒60次
+`用cancelAnimationFrame()`清除
 
+```js
+function Draw()
+{
+    //code....
+    var time = requestAnimationFrame(Draw);
+}
+
+// event
+CancelAnimationFrame(time)
+```
+
+ 
+**划重点！！推荐使用requestAnimationFrame做动画，相比起setInterval，他遵循浏览器的刷新速率，使卡顿情况大大下降，同时不因为触发事件而使得动画卡住，大量降低cpu损耗，提高网页运行速率，减少电量损耗，但限于IE8以上，低于IE8的可采用setInterval(function,1000/60)代替**
 ## 开始绘制
 
 1. 获取宽高
@@ -180,7 +204,7 @@
         }
     }
     
-    function clearcanvas(){
+    function cleancanvas(){
         ctx.clearRect(0,0,300,300);
     }
     
@@ -195,7 +219,7 @@
     function draw() {
             var ctx = document.getElementById('canvas').getContext('2d');
             ctx.globalCompositeOperation = 'destination-over';
-            clearRect();
+            cleancanvas();
             ctx.fillStyle = 'rgba(0,0,0,0.4)';
             ctx.strokeStyle = 'rgba(0,153,255,0.4)';
             earth.draw();
@@ -277,81 +301,81 @@
     
     ```js
     //碰撞检测
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <meta charset="utf-8">
-      <title>JS Bin</title>
-    </head>
-    <body>
-      <canvas id="canvas" width='500' height='500' style="border:1px solid black"></canvas>
-    </body>
-    <script type="text/javascript">
-    	var Mycanvas = document.getElementById('canvas');
-    	var ball = {
-    	bounce:0,
-        init:function(x,y,r,vx,vy,a){
-            this.x = x,
-            this.y = y,
-            this.r = r,
-            this.Vx = vx,
-            this.Vy = vy,
-            this.a = a;
-        },
-          
-        draw:function(){
-        		if(this.x >= Mycanvas.width + this.r || this.x <= - this.r )
-                {
-                	/*clearInterval(time);*/
-                	this.bounce = 0;
-                	ball.init(250,50,20,1+Math.random()*3,1,1);
-                	console.log(ball)
-                }
-    
-        		else
-        		{
-        			var ctx = Mycanvas.getContext('2d');
-    
-                	ctx.beginPath();
-       				ctx.arc(this.x,this.y,this.r,0,2*Math.PI,1);
-               		ctx.fillStyle = '#cc3333';
-              		ctx.fill();
-               		ctx.closePath();
-    
-                	if(this.y >= Mycanvas.height)
-                	{
-                		this.Vy = Math.min(0,-20 + 5 * this.bounce);
-                		console.log(this.Vy);
-                		this.bounce ++
-               		 }
-               
-                	this.x += this.Vx,
-                	this.y += this.Vy,
-                	this.Vy += this.a;
-        		}
-                
-    
-     	
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="utf-8">
+          <title>JS Bin</title>
+        </head>
+        <body>
+          <canvas id="canvas" width='500' height='500' style="border:1px solid black"></canvas>
+        </body>
+        <script type="text/javascript">
+        	var Mycanvas = document.getElementById('canvas');
+        	var ball = {
+        	bounce:0,
+            init:function(x,y,r,vx,vy,a){
+                this.x = x,
+                this.y = y,
+                this.r = r,
+                this.Vx = vx,
+                this.Vy = vy,
+                this.a = a;
             },
-        };
-    function Draw(){
-    
-    	clearcanvas();
-    	ball.draw();
-    }
-    
-    function clearcanvas(){
-    	var ctx = Mycanvas.getContext('2d');
-    	ctx.clearRect(0,0,Mycanvas.width,Mycanvas.height);
-    }
-    
-    
-    ball.init(250,50,20,1+Math.random()*3,1,1);
-    
-    let time  = setInterval(Draw,16);
-    
-    
-    
-    </script>
-    </html>
+              
+            draw:function(){
+            		if(this.x >= Mycanvas.width + this.r || this.x <= - this.r )
+                    {
+                    	/*clearInterval(time);*/
+                    	this.bounce = 0;
+                    	ball.init(250,50,20,1+Math.random()*3,1,1);
+                    	console.log(ball)
+                    }
+        
+            		else
+            		{
+            			var ctx = Mycanvas.getContext('2d');
+        
+                    	ctx.beginPath();
+           				ctx.arc(this.x,this.y,this.r,0,2*Math.PI,1);
+                   		ctx.fillStyle = '#cc3333';
+                  		ctx.fill();
+                   		ctx.closePath();
+        
+                    	if(this.y >= Mycanvas.height)
+                    	{
+                    		this.Vy = Math.min(0,-20 + 5 * this.bounce);
+                    		console.log(this.Vy);
+                    		this.bounce ++
+                   		 }
+                   
+                    	this.x += this.Vx,
+                    	this.y += this.Vy,
+                    	this.Vy += this.a;
+            		}
+                    
+        
+         	
+                },
+            };
+        function Draw(){
+        
+        	clearcanvas();
+        	ball.draw();
+        }
+        
+        function clearcanvas(){
+        	var ctx = Mycanvas.getContext('2d');
+        	ctx.clearRect(0,0,Mycanvas.width,Mycanvas.height);
+        }
+        
+        
+        ball.init(250,50,20,1+Math.random()*3,1,1);
+        
+        let time  = setInterval(Draw,16);
+        
+        
+        
+        </script>
+        </html>
     ```
